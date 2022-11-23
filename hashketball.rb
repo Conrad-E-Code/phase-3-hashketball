@@ -1,4 +1,5 @@
 # Write your code below game_hash
+require 'pry'
 def game_hash
   {
     home: {
@@ -127,3 +128,86 @@ def game_hash
 end
 
 # Write code here
+def num_points_scored(player_name)
+  game_hash.each do |location, team_data| 
+team_data[:players].each do |player| 
+  if (player[:player_name] == player_name)
+  return  player[:points]
+end
+end
+end
+end
+
+def shoe_size(player_name)
+  game_hash.each do |location, team_data| 
+    team_data[:players].each do |player| 
+      if (player[:player_name] == player_name)
+        return  player[:shoe]
+      end
+    end
+  end
+end
+
+    def team_colors(team_name)
+      game_hash.each do |location, team_data|
+        if (team_data[:team_name] == team_name)
+          return team_data[:colors]
+        end
+      end
+    end
+    
+    def team_names
+      game_hash.map do |location, team_data|
+           team_data[:team_name]
+        end
+      end
+
+    # def player_numbers(team_name)
+    #   game_hash.each do |location|
+def player_numbers(team_name)
+  select_team = game_hash.select do |location, team_data|
+    if (team_data[:team_name] == team_name)
+       true
+    else 
+       false
+    end
+  end
+  if select_team[:home] != nil 
+
+    select_team[:home][:players].map do |player|
+      # binding.pry
+      # 0
+      player[:number]
+    end
+
+  elsif select_team[:away] != nil 
+
+    select_team[:away][:players].map do |player|
+    # binding.pry
+    # 0
+      player[:number]
+    end
+  end
+end
+
+
+          # game_hash.each do |location, team_data| 
+          #   if (team_data[:team_name] == team_name)
+          #   team_data[:players].map do |player| 
+          #     return player[:number]
+          #   end
+          # else 
+          # end
+          #   end
+          #   end
+
+
+          # def team_colors(team_name)
+          #   team = find_team(team_name)
+          #   team[:colors]
+          # end
+          # def find_team(team_name)
+          #   team_info = game_hash.find do |location, team_data|
+          #     team_data[:team_name] == team_name
+          # end
+          
